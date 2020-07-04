@@ -1,0 +1,69 @@
+﻿@model InternetCafe.ViewModels.CreateReservationViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTime" class="control-label"></label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                <input asp-for="Customer" class="form-control" />
+                <span asp-validation-for="Customer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Devices" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.DeviceId, new SelectList(Model.Devices, "Id", "Name"))
+                <span asp-validation-for="Devices" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VIPs" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.VIPId, new SelectList(Model.VIPs, "Id", "Name"))
+                <span asp-validation-for="VIPs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IRLs" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.IRLId, new SelectList(Model.IRLs, "Id", "Name"))
+                <span asp-validation-for="IRLs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

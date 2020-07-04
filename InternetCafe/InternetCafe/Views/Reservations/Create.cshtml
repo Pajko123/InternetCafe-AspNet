@@ -1,0 +1,93 @@
+﻿@model InternetCafe.ViewModels.CreateReservationViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Reservation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Devices" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.DeviceId, new SelectList(Model.Devices, "Id", "Name"))
+                <span asp-validation-for="Devices" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VIPs" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.VIPId, new SelectList(Model.VIPs, "Id", "Name"))
+                <span asp-validation-for="VIPs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IRLs" class="control-label"></label>
+                @Html.DropDownListFor(m => Model.IRLId, new SelectList(Model.IRLs, "Id", "Name"))
+                <span asp-validation-for="IRLs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTime" class="control-label"></label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Customer" class="control-label"></label>
+                <input asp-for="Customer" class="form-control" />
+                <span asp-validation-for="Customer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Price Info</h4>
+            <hr />
+            @{
+                <div>
+                    <p>
+                        Each PC costs 50 mkd per Hour. If you reserve a PC VIP room than the price for VIP 
+                        room is 250 mkd per hour (5PCs * 50mkd).                        
+                    </p>
+                    <p>
+                        For PS4 and XBonxOne the price is 60mkd per hour. If you reserve a PS4 or XBoxOne VIP room
+                        the price is 300 mkd per hour. The number of people in the VIP rooms is limited to 8 people, but only 4
+                        can play at a time (4 controllers).
+                    </p>
+                    <p>
+                        For the IRL games the price is based on coins. For Darts and Pool the coin is 50mkd while for 
+                        Table Footbal each coin is 10mkd.
+                    </p>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
